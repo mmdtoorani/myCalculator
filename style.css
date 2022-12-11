@@ -1,12 +1,17 @@
-.top {
+.monitor-box {
     background-color: #cecece;
     min-height: 130px;
     max-width: 223px;
 }
 
 .buttons {
+    display: block;
+    position: fixed;
     border: #2b2b2b solid 2px;
     width: fit-content;
+    left: 50%;
+    top: 90px;
+    transform: translateX(-50%);
 }
 
 .btn {
