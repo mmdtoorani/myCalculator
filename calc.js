@@ -28,3 +28,26 @@ Array.from(operations).forEach(operation => {
         spanInMonOp.append(operation.textContent)
     })
 })
+
+const equal = document.querySelector("#eql")
+
+equal.addEventListener("click", () => {
+    switch (spanInMonOp.textContent) {
+        case "+":
+            addition(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "-":
+            subtraction(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "×":
+            multiplication(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "÷":
+            division(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "^":
+            power(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+    }
+
+})
