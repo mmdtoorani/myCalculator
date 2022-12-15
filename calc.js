@@ -4,11 +4,11 @@ const spanInMonX = document.createElement('span');
 const spanInMonOp = document.createElement('span');
 const spanInMonY = document.createElement('span');
 
-
 spanInMonX.id = 'span-in-monitor-x'
 spanInMonOp.id = 'span-in-monitor-op'
 spanInMonY.id = 'span-in-monitor-y'
 
+// implementation of number buttons
 Array.from(numbers).forEach(num => {
     monitorBox.appendChild(spanInMonX)
     num.addEventListener("click", () => {
@@ -19,6 +19,29 @@ Array.from(numbers).forEach(num => {
             spanInMonY.append(num.firstChild.textContent)
         }
     })
+})
+
+// implementation of point button
+const point = document.querySelector("#point");
+
+point.addEventListener("click", () => {
+    if (spanInMonOp.innerText === "") {
+        if (spanInMonX.innerText === "") {
+            spanInMonX.textContent = "0"
+            spanInMonX.append(point.textContent)
+        } else {
+            spanInMonX.append(point.textContent)
+        }
+
+    } else {
+        monitorBox.appendChild(spanInMonY)
+        if (spanInMonY.innerText === "") {
+            spanInMonY.textContent = "0"
+            spanInMonY.append(point.textContent)
+        } else {
+            spanInMonY.append(point.textContent)
+        }
+    }
 })
 
 // implementation of operations
