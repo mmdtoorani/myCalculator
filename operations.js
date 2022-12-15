@@ -14,15 +14,15 @@ const multiplication = (x, y) => {
     return toNum(x) * toNum(y)
 }
 
-const Division = (x, y) => {
+const division = (x, y) => {
     return toNum(x) / toNum(y)
 }
 
 const power = (x, y) => {
-    console.log(toNum(x) ** toNum(y))
+    // console.log(toNum(x) ** toNum(y))
     return toNum(x) ** toNum(y)
 }
 
-const squareRoot = (x, y) => {
-    return toNum(x) ** (1 / toNum(y))
+const squareRoot = (x) => {
+    return Math.sqrt(toNum(x))
 }

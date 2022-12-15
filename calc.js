@@ -1,8 +1,9 @@
-const numbers = document.querySelectorAll(".num")
-const monitorBox = document.querySelector(".monitor-box")
-const spanInMonX = document.createElement('span')
-const spanInMonOp = document.createElement('span')
-const spanInMonY = document.createElement('span')
+const numbers = document.querySelectorAll(".num");
+const monitorBox = document.querySelector(".monitor-box");
+const spanInMonX = document.createElement('span');
+const spanInMonOp = document.createElement('span');
+const spanInMonY = document.createElement('span');
+
 
 spanInMonX.id = 'span-in-monitor-x'
 spanInMonOp.id = 'span-in-monitor-op'
@@ -32,22 +33,26 @@ Array.from(operations).forEach(operation => {
 const equal = document.querySelector("#eql")
 
 equal.addEventListener("click", () => {
+    let res;
     switch (spanInMonOp.textContent) {
         case "+":
-            addition(spanInMonX.textContent, spanInMonY.textContent);
+            res = addition(spanInMonX.textContent, spanInMonY.textContent);
             break;
         case "-":
-            subtraction(spanInMonX.textContent, spanInMonY.textContent);
+            res = subtraction(spanInMonX.textContent, spanInMonY.textContent);
             break;
         case "×":
-            multiplication(spanInMonX.textContent, spanInMonY.textContent);
+            res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
             break;
         case "÷":
-            division(spanInMonX.textContent, spanInMonY.textContent);
+            res = division(spanInMonX.textContent, spanInMonY.textContent);
             break;
         case "^":
-            power(spanInMonX.textContent, spanInMonY.textContent);
+            res = power(spanInMonX.textContent, spanInMonY.textContent);
             break;
     }
+    spanInMonY.innerText = ""
+    spanInMonOp.innerText = ""
+    spanInMonX.innerText = res;
 
 })
