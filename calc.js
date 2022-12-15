@@ -21,13 +21,21 @@ Array.from(numbers).forEach(num => {
     })
 })
 
+// implementation of operations
 const operations = document.querySelectorAll(".opr")
 
 Array.from(operations).forEach(operation => {
     monitorBox.appendChild(spanInMonOp)
+
     operation.addEventListener("click", () => {
-        spanInMonOp.append(operation.textContent)
+        if (spanInMonX.textContent !== "") {
+            spanInMonOp.append(operation.textContent)
+        } else {
+            spanInMonX.textContent = "0"
+            spanInMonOp.append(operation.textContent)
+        }
     })
+
 })
 
 // implementation of equal button
