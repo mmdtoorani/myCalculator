@@ -97,3 +97,33 @@ clear.addEventListener("click", () => {
     spanInMonOp.innerText = "";
     spanInMonX.innerText = "";
 })
+
+// implementation of backspace button and backspace key
+const backSpaceKey = (span) => {
+    return span.innerText = span.textContent.substring(0, span.textContent.length - 1);
+}
+
+const deleteGradually = () => {
+    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+        backSpaceKey(spanInMonY);
+
+    } else {
+        if (spanInMonOp.textContent !== "") {
+            backSpaceKey(spanInMonOp);
+        } else {
+            backSpaceKey(spanInMonX);
+        }
+    }
+}
+
+document.addEventListener("keydown", (e)  => {
+    if (e.key === "Backspace") {
+        deleteGradually()
+    }
+})
+
+const backspace = document.querySelector("#bkspc");
+
+backspace.addEventListener("click", () => {
+    deleteGradually()
+})
