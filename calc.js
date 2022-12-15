@@ -51,11 +51,13 @@ Array.from(operations).forEach(operation => {
     monitorBox.appendChild(spanInMonOp)
 
     operation.addEventListener("click", () => {
-        if (spanInMonX.textContent !== "") {
-            spanInMonOp.append(operation.textContent)
-        } else {
-            spanInMonX.textContent = "0"
-            spanInMonOp.append(operation.textContent)
+        if (spanInMonOp.textContent === "") {
+            if (spanInMonX.textContent !== "") {
+                spanInMonOp.append(operation.textContent)
+            } else {
+                spanInMonX.textContent = "0"
+                spanInMonOp.append(operation.textContent)
+            }
         }
     })
 
@@ -116,7 +118,7 @@ const deleteGradually = () => {
     }
 }
 
-document.addEventListener("keydown", (e)  => {
+document.addEventListener("keydown", (e) => {
     if (e.key === "Backspace") {
         deleteGradually()
     }
