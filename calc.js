@@ -30,6 +30,7 @@ Array.from(operations).forEach(operation => {
     })
 })
 
+// implementation of equal button
 const equal = document.querySelector("#eql")
 
 equal.addEventListener("click", () => {
@@ -51,8 +52,17 @@ equal.addEventListener("click", () => {
             res = power(spanInMonX.textContent, spanInMonY.textContent);
             break;
     }
-    spanInMonY.innerText = ""
-    spanInMonOp.innerText = ""
+    spanInMonY.innerText = "";
+    spanInMonOp.innerText = "";
     spanInMonX.innerText = res;
 
+})
+
+// implementation of clear button
+const clear = document.querySelector("#clear");
+
+clear.addEventListener("click", () => {
+    spanInMonY.innerText = "";
+    spanInMonOp.innerText = "";
+    spanInMonX.innerText = "";
 })
