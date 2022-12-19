@@ -151,3 +151,11 @@ const percentBtn = document.querySelector("#prcnt");
 percentBtn.addEventListener("click", () => {
     requireSpan(percentage)
 })
+
+//implementation of reverse
+const reverseBtn = document.querySelector("#onx");
+
+reverseBtn.addEventListener("click", () => {
+    requireSpan(reverse)
+})
+

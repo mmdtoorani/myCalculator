@@ -30,3 +30,7 @@ const squareRoot = (x) => {
 const percentage = (x) => {
     return toNum(x) / 100
 }
+
+const reverse = (x) => {
+    return 1 / toNum(x)
+}
