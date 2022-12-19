@@ -130,3 +130,25 @@ const backspace = document.querySelector("#bkspc");
 backspace.addEventListener("click", () => {
     deleteGradually()
 })
+
+//implementation of square root
+const radicalBtn = document.querySelector("#radical");
+
+radicalBtn.addEventListener("click", () => {
+    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+        spanInMonY.innerText = squareRoot(spanInMonY.textContent)
+    } else {
+        spanInMonX.innerText = squareRoot(spanInMonX.textContent)
+    }
+})
+
+//implementation of percentage
+const percentBtn = document.querySelector("#prcnt");
+
+percentBtn.addEventListener("click", () => {
+    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+        spanInMonY.innerText = percentage(spanInMonY.textContent)
+    } else {
+        spanInMonX.innerText = percentage(spanInMonX.textContent)
+    }
+})

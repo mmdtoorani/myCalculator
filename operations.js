@@ -26,3 +26,7 @@ const power = (x, y) => {
 const squareRoot = (x) => {
     return Math.sqrt(toNum(x))
 }
+
+const percentage = (x) => {
+    return toNum(x) / 100
+}
