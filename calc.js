@@ -68,27 +68,28 @@ const equal = document.querySelector("#eql")
 
 equal.addEventListener("click", () => {
     let res;
-    switch (spanInMonOp.textContent) {
-        case "+":
-            res = addition(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "-":
-            res = subtraction(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "×":
-            res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "÷":
-            res = division(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "^":
-            res = power(spanInMonX.textContent, spanInMonY.textContent);
-            break;
+        switch (spanInMonOp.textContent) {
+            case "+":
+                res = addition(spanInMonX.textContent, spanInMonY.textContent);
+                break;
+            case "-":
+                res = subtraction(spanInMonX.textContent, spanInMonY.textContent);
+                break;
+            case "×":
+                res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
+                break;
+            case "÷":
+                res = division(spanInMonX.textContent, spanInMonY.textContent);
+                break;
+            case "^":
+                res = power(spanInMonX.textContent, spanInMonY.textContent);
+                break;
+        }
+    if (spanInMonOp.textContent !== "") {
+        spanInMonY.innerText = "";
+        spanInMonOp.innerText = "";
+        spanInMonX.innerText = res;
     }
-    spanInMonY.innerText = "";
-    spanInMonOp.innerText = "";
-    spanInMonX.innerText = res;
-
 })
 
 // implementation of clear button
