@@ -133,22 +133,21 @@ backspace.addEventListener("click", () => {
 
 //implementation of square root
 const radicalBtn = document.querySelector("#radical");
+const requireSpan = (func) => {
+    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+        spanInMonY.innerText = func(spanInMonY.textContent)
+    } else {
+        spanInMonX.innerText = func(spanInMonX.textContent)
+    }
+}
 
 radicalBtn.addEventListener("click", () => {
-    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
-        spanInMonY.innerText = squareRoot(spanInMonY.textContent)
-    } else {
-        spanInMonX.innerText = squareRoot(spanInMonX.textContent)
-    }
+    requireSpan(squareRoot)
 })
 
 //implementation of percentage
 const percentBtn = document.querySelector("#prcnt");
 
 percentBtn.addEventListener("click", () => {
-    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
-        spanInMonY.innerText = percentage(spanInMonY.textContent)
-    } else {
-        spanInMonX.innerText = percentage(spanInMonX.textContent)
-    }
+    requireSpan(percentage)
 })
