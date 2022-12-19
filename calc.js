@@ -132,7 +132,6 @@ backspace.addEventListener("click", () => {
 })
 
 //implementation of square root
-const radicalBtn = document.querySelector("#radical");
 const requireSpan = (func) => {
     if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
         spanInMonY.innerText = func(spanInMonY.textContent)
@@ -141,6 +140,7 @@ const requireSpan = (func) => {
     }
 }
 
+const radicalBtn = document.querySelector("#radical");
 radicalBtn.addEventListener("click", () => {
     requireSpan(squareRoot)
 })
@@ -159,3 +159,9 @@ reverseBtn.addEventListener("click", () => {
     requireSpan(reverse)
 })
 
+//implementation of reverse
+const negateBtn = document.querySelector("#negate");
+
+negateBtn.addEventListener("click", () => {
+    requireSpan(negate)
+})

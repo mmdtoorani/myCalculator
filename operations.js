@@ -34,3 +34,7 @@ const percentage = (x) => {
 const reverse = (x) => {
     return 1 / toNum(x)
 }
+
+const negate = (x) => {
+    return toNum(x) * (-1)
+}
