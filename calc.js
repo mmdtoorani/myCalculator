@@ -63,6 +63,8 @@ Array.from(operations).forEach(operation => {
                 spanInMonX.textContent = "0"
                 spanInMonOp.append(operation.textContent)
             }
+        } else if (spanInMonY.textContent === "") {
+            spanInMonOp.textContent = operation.textContent
         }
     })
 
