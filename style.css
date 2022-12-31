@@ -1,29 +1,75 @@
+body {
+    background: hsl(0, 0%, 90%);
+}
+
+.calc {
+    background: hsl(205, 14%, 41%);
+    display: block;
+    position: fixed;
+    border-radius: 10px;
+    width: 16rem;
+    left: 50%;
+    top: 90px;
+    transform: translateX(-50%);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
 .monitor-box {
-    background-color: #cecece;
     min-height: 130px;
     max-width: 223px;
 }
 
-.calc {
-    display: block;
-    position: fixed;
-    border: #2b2b2b solid 1px;
-    width: fit-content;
-    left: 50%;
-    top: 90px;
-    transform: translateX(-50%);
-}
-
 .btn {
-    background-color: #efefef;
+    border-radius: 100%;
     height: 50px;
     width: 50px;
+    color: hsl(0, 0%, 90%);
 }
 
 .btn:hover {
-    background-color: #d5d5d5;
+    /*background-color: rgba(165, 180, 211, 0.42);*/
+    background-color: hsl(208, 18%, 61%);
+    color: hsl(0, 0%, 100%);
 }
 
 .btn:active {
-    background-color: #b4b4b4
+    background-color: rgba(141, 154, 180, 0.42);
+    color: hsl(0, 0%, 100%);
+}
+
+.not-num {
+    background: hsl(208, 18%, 61%);
+    color: hsl(0, 0%, 100%);
+}
+
+.not-num:hover {
+    background-color: rgba(141, 154, 180, 0.42);
+    color: hsl(0, 0%, 100%);
+}
+
+.not-num:active {
+    background-color: rgba(124, 135, 157, 0.42);
+    color: hsl(0, 0%, 100%);
+}
+
+#eql {
+    background: hsl(357, 97%, 72%);
+    color: hsl(0, 0%, 100%);
+}
+
+#eql:hover {
+    background: hsl(357, 61%, 60%);
+    color: hsl(0, 0%, 100%);
+}
+
+#eql:active {
+    background: hsla(0, 70%, 60%, 0.85);
+    color: hsl(0, 0%, 100%);
+}
+
+#span-in-monitor-x,
+#span-in-monitor-y,
+#span-in-monitor-op {
+    font-size: 1.2rem;
+    color: hsl(0, 0%, 100%);
 }
