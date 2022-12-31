@@ -13,7 +13,12 @@ Array.from(numbers).forEach(num => {
     monitorBox.appendChild(spanInMonX)
     num.addEventListener("click", () => {
         if (spanInMonOp.innerText === "") {
-            spanInMonX.append(num.firstChild.textContent)
+            if (monitorBox.contains(spanInMonY)) {
+                spanInMonX.textContent = num.firstChild.textContent
+                spanInMonY.remove()
+            } else {
+                spanInMonX.append(num.firstChild.textContent)
+            }
         } else {
             monitorBox.appendChild(spanInMonY)
             spanInMonY.append(num.firstChild.textContent)
@@ -68,23 +73,23 @@ const equal = document.querySelector("#eql")
 
 equal.addEventListener("click", () => {
     let res;
-        switch (spanInMonOp.textContent) {
-            case "+":
-                res = addition(spanInMonX.textContent, spanInMonY.textContent);
-                break;
-            case "-":
-                res = subtraction(spanInMonX.textContent, spanInMonY.textContent);
-                break;
-            case "×":
-                res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
-                break;
-            case "÷":
-                res = division(spanInMonX.textContent, spanInMonY.textContent);
-                break;
-            case "^":
-                res = power(spanInMonX.textContent, spanInMonY.textContent);
-                break;
-        }
+    switch (spanInMonOp.textContent) {
+        case "+":
+            res = addition(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "-":
+            res = subtraction(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "×":
+            res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "÷":
+            res = division(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+        case "^":
+            res = power(spanInMonX.textContent, spanInMonY.textContent);
+            break;
+    }
     if (spanInMonOp.textContent !== "") {
         spanInMonY.innerText = "";
         spanInMonOp.innerText = "";
@@ -94,12 +99,16 @@ equal.addEventListener("click", () => {
 
 // implementation of clear button
 const clear = document.querySelector("#clear");
-
-clear.addEventListener("click", () => {
-    spanInMonY.innerText = "";
-    spanInMonOp.innerText = "";
-    spanInMonX.innerText = "";
-})
+const clearE = document.querySelector("#clre");
+const CE = (btn) => {
+    btn.addEventListener("click", () => {
+        spanInMonY.remove()
+        spanInMonOp.innerText = "";
+        spanInMonX.innerText = "";
+    })
+}
+CE(clear);
+CE(clearE);
 
 // implementation of backspace button and backspace key
 const backSpaceKey = (span) => {
