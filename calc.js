@@ -103,6 +103,10 @@ equal.addEventListener("click", () => {
         spanInMonOp.innerText = "";
         spanInMonX.innerText = res;
     }
+    console.log(spanInMonX.innerText.length)
+    if (spanInMonX.innerText.length > 16) {
+        spanInMonX.textContent = toScientific(spanInMonX.textContent)
+    }
 })
 
 // implementation of clear button

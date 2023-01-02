@@ -2,6 +2,11 @@ const toNum = (s) => {
     return parseFloat(s)
 }
 
+const toScientific = (n) => {
+    let num = toNum(n)
+    return num.toExponential()
+}
+
 const addition = (x, y) => {
     return toNum(x) + toNum(y)
 }
