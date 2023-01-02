@@ -86,7 +86,13 @@ equal.addEventListener("click", () => {
             res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
             break;
         case "÷":
-            res = division(spanInMonX.textContent, spanInMonY.textContent);
+            if (toNum(spanInMonY.textContent) !== 0) {
+                res = division(spanInMonX.textContent, spanInMonY.textContent);
+            } else {
+                spanInMonX.textContent = ""
+                spanInMonOp.textContent = ""
+                spanInMonY.textContent = ""
+            }
             break;
         case "^":
             res = power(spanInMonX.textContent, spanInMonY.textContent);
@@ -143,36 +149,38 @@ backspace.addEventListener("click", () => {
 })
 
 //implementation of square root
-const requireSpan = (func) => {
-    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
-        spanInMonY.innerText = func(spanInMonY.textContent)
-    } else {
-        spanInMonX.innerText = func(spanInMonX.textContent)
+const spanRequire = (func) => {
+    if (monitorBox.contains(spanInMonX) && spanInMonX.textContent !== "") {
+        if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+            spanInMonY.innerText = func(spanInMonY.textContent)
+        } else {
+            spanInMonX.innerText = func(spanInMonX.textContent)
+        }
     }
 }
 
 const radicalBtn = document.querySelector("#radical");
 radicalBtn.addEventListener("click", () => {
-    requireSpan(squareRoot)
+    spanRequire(squareRoot)
 })
 
 //implementation of percentage
 const percentBtn = document.querySelector("#prcnt");
 
 percentBtn.addEventListener("click", () => {
-    requireSpan(percentage)
+    spanRequire(percentage)
 })
 
 //implementation of reverse
 const reverseBtn = document.querySelector("#onx");
 
 reverseBtn.addEventListener("click", () => {
-    requireSpan(reverse)
+    spanRequire(reverse)
 })
 
 //implementation of reverse
 const negateBtn = document.querySelector("#negate");
 
 negateBtn.addEventListener("click", () => {
-    requireSpan(negate)
+    spanRequire(negate)
 })

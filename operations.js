@@ -19,7 +19,6 @@ const division = (x, y) => {
 }
 
 const power = (x, y) => {
-    // console.log(toNum(x) ** toNum(y))
     return toNum(x) ** toNum(y)
 }
 
