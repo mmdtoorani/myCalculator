@@ -67,7 +67,31 @@ Array.from(operations).forEach(operation => {
             spanInMonOp.textContent = operation.textContent
         }
     })
+})
 
+// implementation of operations keypress
+let codes = {
+    "NumpadAdd": "+",
+    "NumpadSubtract": "-",
+    "NumpadMultiply": "×",
+    "NumpadDivide": "÷"
+}
+
+document.addEventListener("keydown", (e) => {
+    for (let code in codes) {
+        if (e.code === code) {
+            if (spanInMonOp.textContent === "") {
+                if (spanInMonX.textContent !== "") {
+                    spanInMonOp.textContent += `${codes[code]}`;
+                } else {
+                    spanInMonX.textContent = "0"
+                    spanInMonOp.textContent += `${codes[code]}`;
+                }
+            } else if (spanInMonY.textContent === "") {
+                spanInMonOp.textContent = `${codes[code]}`;
+            }
+        }
+    }
 })
 
 // implementation of equal button
