@@ -28,44 +28,54 @@ Array.from(numbers).forEach(num => {
 
 // implementation of point button
 const point = document.querySelector("#point");
-
-point.addEventListener("click", () => {
+const pointLogic = () => {
     if (spanInMonOp.innerText === "") {
         if (spanInMonX.innerText === "") {
             spanInMonX.textContent = "0"
-            spanInMonX.append(point.textContent)
+            spanInMonX.textContent += point.textContent
         } else {
-            spanInMonX.append(point.textContent)
+            spanInMonX.textContent += point.textContent
         }
 
     } else {
         monitorBox.appendChild(spanInMonY)
         if (spanInMonY.innerText === "") {
             spanInMonY.textContent = "0"
-            spanInMonY.append(point.textContent)
+            spanInMonY.textContent += point.textContent
         } else {
-            spanInMonY.append(point.textContent)
+            spanInMonY.textContent += point.textContent
         }
+    }
+}
+point.addEventListener("click", () => {
+    pointLogic()
+})
+
+document.addEventListener("keydown", (e) => {
+    if (e.code === "NumpadDecimal") {
+        pointLogic()
     }
 })
 
 // implementation of operations
 const operations = document.querySelectorAll(".opr")
+const oprLogic = (opr) => {
+    if (spanInMonOp.textContent === "") {
+        if (spanInMonX.textContent !== "") {
+            spanInMonOp.textContent += `${opr}`;
+        } else {
+            spanInMonX.textContent = "0"
+            spanInMonOp.textContent += `${opr}`;
+        }
+    } else if (spanInMonY.textContent === "") {
+        spanInMonOp.textContent = `${opr}`;
+    }
+}
 
 Array.from(operations).forEach(operation => {
     monitorBox.appendChild(spanInMonOp)
-
     operation.addEventListener("click", () => {
-        if (spanInMonOp.textContent === "") {
-            if (spanInMonX.textContent !== "") {
-                spanInMonOp.append(operation.textContent)
-            } else {
-                spanInMonX.textContent = "0"
-                spanInMonOp.append(operation.textContent)
-            }
-        } else if (spanInMonY.textContent === "") {
-            spanInMonOp.textContent = operation.textContent
-        }
+        oprLogic(operation.textContent)
     })
 })
 
@@ -80,16 +90,7 @@ let codes = {
 document.addEventListener("keydown", (e) => {
     for (let code in codes) {
         if (e.code === code) {
-            if (spanInMonOp.textContent === "") {
-                if (spanInMonX.textContent !== "") {
-                    spanInMonOp.textContent += `${codes[code]}`;
-                } else {
-                    spanInMonX.textContent = "0"
-                    spanInMonOp.textContent += `${codes[code]}`;
-                }
-            } else if (spanInMonY.textContent === "") {
-                spanInMonOp.textContent = `${codes[code]}`;
-            }
+            oprLogic(codes[code])
         }
     }
 })
@@ -126,7 +127,6 @@ const equalFunc = () => {
         spanInMonOp.innerText = "";
         spanInMonX.innerText = res;
     }
-    console.log(spanInMonX.innerText.length)
     if (spanInMonX.innerText.length > 16) {
         spanInMonX.textContent = toScientific(spanInMonX.textContent)
     }
@@ -235,7 +235,7 @@ reverseBtn.addEventListener("click", () => {
     spanRequire(reverse)
 })
 
-//implementation of reverse
+//implementation of negate
 const negateBtn = document.querySelector("#negate");
 
 negateBtn.addEventListener("click", () => {
