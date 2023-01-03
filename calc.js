@@ -72,8 +72,7 @@ Array.from(operations).forEach(operation => {
 
 // implementation of equal button
 const equal = document.querySelector("#eql")
-
-equal.addEventListener("click", () => {
+const equalFunc = () => {
     let res;
     switch (spanInMonOp.textContent) {
         case "+":
@@ -106,6 +105,14 @@ equal.addEventListener("click", () => {
     console.log(spanInMonX.innerText.length)
     if (spanInMonX.innerText.length > 16) {
         spanInMonX.textContent = toScientific(spanInMonX.textContent)
+    }
+}
+equal.addEventListener("click", equalFunc)
+
+// implementation of enter keypress
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        equalFunc()
     }
 })
 
