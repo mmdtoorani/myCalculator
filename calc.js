@@ -51,12 +51,6 @@ point.addEventListener("click", () => {
     pointLogic()
 })
 
-document.addEventListener("keydown", (e) => {
-    if (e.code === "NumpadDecimal") {
-        pointLogic()
-    }
-})
-
 // implementation of operations
 const operations = document.querySelectorAll(".opr")
 const oprLogic = (opr) => {
@@ -86,14 +80,6 @@ let codes = {
     "NumpadMultiply": "×",
     "NumpadDivide": "÷"
 }
-
-document.addEventListener("keydown", (e) => {
-    for (let code in codes) {
-        if (e.code === code) {
-            oprLogic(codes[code])
-        }
-    }
-})
 
 // implementation of equal button
 const equal = document.querySelector("#eql")
@@ -133,13 +119,6 @@ const equalFunc = () => {
 }
 equal.addEventListener("click", equalFunc)
 
-// implementation of enter keypress
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        equalFunc()
-    }
-})
-
 // implementation of clear button
 const clear = document.querySelector("#clear");
 const clearE = document.querySelector("#clre");
@@ -171,12 +150,6 @@ const deleteGradually = () => {
     }
 }
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Backspace") {
-        deleteGradually()
-    }
-})
-
 const backspace = document.querySelector("#bkspc");
 
 backspace.addEventListener("click", () => {
@@ -197,13 +170,6 @@ const numAdd = (num) => {
         spanInMonY.textContent += `${num}`
     }
 }
-document.addEventListener("keydown", (e) => {
-    for (let i = 0; i < 10; i++) {
-        if (e.code === `Digit${i}` || e.code === `Numpad${i}`) {
-            numAdd(i)
-        }
-    }
-});
 
 //implementation of square root
 const spanRequire = (func) => {
@@ -241,3 +207,26 @@ const negateBtn = document.querySelector("#negate");
 negateBtn.addEventListener("click", () => {
     spanRequire(negate)
 })
+
+// implementation of keypress
+document.addEventListener("keydown", (e) => {
+    for (let i = 0; i < 10; i++) {
+        if (e.code === `Digit${i}` || e.code === `Numpad${i}`) {
+            numAdd(i)
+        }
+    }
+    for (let code in codes) {
+        if (e.code === code) {
+            oprLogic(codes[code])
+        }
+    }
+    if (e.code === "NumpadDecimal") {
+        pointLogic()
+    }
+    if (e.key === "Enter") {
+        equalFunc()
+    }
+    if (e.key === "Backspace") {
+        deleteGradually()
+    }
+});
