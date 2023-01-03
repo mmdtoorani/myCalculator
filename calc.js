@@ -152,6 +152,28 @@ backspace.addEventListener("click", () => {
     deleteGradually()
 })
 
+// implementation of the keys of the numbers
+const numAdd = (num) => {
+    if (spanInMonOp.innerText === "") {
+        if (monitorBox.contains(spanInMonY)) {
+            spanInMonX.textContent = `${num}`
+            spanInMonY.remove()
+        } else {
+            spanInMonX.textContent += `${num}`
+        }
+    } else {
+        monitorBox.appendChild(spanInMonY)
+        spanInMonY.textContent += `${num}`
+    }
+}
+document.addEventListener("keydown", (e) => {
+    for (let i = 0; i < 10; i++) {
+        if (e.code === `Digit${i}` || e.code === `Numpad${i}`) {
+            numAdd(i)
+        }
+    }
+});
+
 //implementation of square root
 const spanRequire = (func) => {
     if (monitorBox.contains(spanInMonX) && spanInMonX.textContent !== "") {
