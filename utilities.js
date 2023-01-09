@@ -57,14 +57,14 @@ const pointLogic = () => {
 }
 
 const oprLogic = (opr) => {
-    if (spanInMonOp.textContent === "") {
-        if (spanInMonX.textContent !== "") {
+    if (isSpanOpEmpty()) {
+        if (!isSpanXEmpty()) {
             spanInMonOp.textContent += `${opr}`;
         } else {
             spanInMonX.textContent = "0"
             spanInMonOp.textContent += `${opr}`;
         }
-    } else if (spanInMonY.textContent === "") {
+    } else if (isSpanYEmpty()) {
         spanInMonOp.textContent = `${opr}`;
     }
 }
@@ -94,7 +94,7 @@ const equalFunc = () => {
             res = power(spanInMonX.textContent, spanInMonY.textContent);
             break;
     }
-    if (spanInMonOp.textContent !== "") {
+    if (!isSpanOpEmpty()) {
         spanInMonY.innerText = "";
         spanInMonOp.innerText = "";
         spanInMonX.innerText = res;
@@ -114,11 +114,11 @@ const backSpaceKey = (span) => {
 }
 
 const deleteGradually = () => {
-    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+    if (monitorBox.contains(spanInMonY) && !isSpanYEmpty()) {
         backSpaceKey(spanInMonY);
 
     } else {
-        if (spanInMonOp.textContent !== "") {
+        if (!isSpanOpEmpty()) {
             backSpaceKey(spanInMonOp);
         } else {
             backSpaceKey(spanInMonX);
@@ -127,8 +127,8 @@ const deleteGradually = () => {
 }
 
 const spanRequire = (func) => {
-    if (monitorBox.contains(spanInMonX) && spanInMonX.textContent !== "") {
-        if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
+    if (monitorBox.contains(spanInMonX) && !isSpanXEmpty()) {
+        if (monitorBox.contains(spanInMonY) && !isSpanYEmpty()) {
             spanInMonY.innerText = func(spanInMonY.textContent)
         } else {
             spanInMonX.innerText = func(spanInMonX.textContent)
