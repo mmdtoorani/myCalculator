@@ -122,13 +122,13 @@ equal.addEventListener("click", equalFunc)
 // implementation of clear button
 const clear = document.querySelector("#clear");
 const clearE = document.querySelector("#clre");
-const CE = (btn) => {
-    btn.addEventListener("click", () => {
-        spanInMonY.remove()
-        spanInMonOp.innerText = "";
-        spanInMonX.innerText = "";
-    })
+const clearMonitor = () => {
+    spanInMonY.remove()
+    spanInMonOp.innerText = "";
+    spanInMonX.innerText = "";
 }
+const CE = (btn) => btn.addEventListener("click", clearMonitor)
+
 CE(clear);
 CE(clearE);
 
@@ -228,5 +228,8 @@ document.addEventListener("keydown", (e) => {
     }
     if (e.key === "Backspace") {
         deleteGradually()
+    }
+    if (e.key === "Escape") {
+        clearMonitor()
     }
 });
