@@ -8,22 +8,32 @@ spanInMonX.id = 'span-in-monitor-x'
 spanInMonOp.id = 'span-in-monitor-op'
 spanInMonY.id = 'span-in-monitor-y'
 
+const isLengthOfMonitorValid = () => {
+    return spanInMonX.textContent.length + spanInMonOp.textContent.length + spanInMonY.textContent.length < 16;
+}
+
+const numAdd = (num) => {
+    if (spanInMonOp.innerText === "") {
+        if (monitorBox.contains(spanInMonY)) {
+            spanInMonX.textContent = `${num}`
+            spanInMonY.remove()
+        } else {
+            spanInMonX.textContent += `${num}`
+        }
+    } else {
+        monitorBox.appendChild(spanInMonY)
+        spanInMonY.textContent += `${num}`
+    }
+}
+
 // implementation of number buttons
 Array.from(numbers).forEach(num => {
-    monitorBox.appendChild(spanInMonX)
-    num.addEventListener("click", () => {
-        if (spanInMonOp.innerText === "") {
-            if (monitorBox.contains(spanInMonY)) {
-                spanInMonX.textContent = num.firstChild.textContent
-                spanInMonY.remove()
-            } else {
-                spanInMonX.append(num.firstChild.textContent)
-            }
-        } else {
-            monitorBox.appendChild(spanInMonY)
-            spanInMonY.append(num.firstChild.textContent)
-        }
-    })
+    if (isLengthOfMonitorValid()) {
+        monitorBox.appendChild(spanInMonX)
+        num.addEventListener("click", () => {
+            numAdd(num.firstChild.textContent)
+        })
+    }
 })
 
 // implementation of point button
@@ -72,14 +82,6 @@ Array.from(operations).forEach(operation => {
         oprLogic(operation.textContent)
     })
 })
-
-// implementation of operations keypress
-let codes = {
-    "NumpadAdd": "+",
-    "NumpadSubtract": "-",
-    "NumpadMultiply": "×",
-    "NumpadDivide": "÷"
-}
 
 // implementation of equal button
 const equal = document.querySelector("#eql")
@@ -132,7 +134,7 @@ const CE = (btn) => btn.addEventListener("click", clearMonitor)
 CE(clear);
 CE(clearE);
 
-// implementation of backspace button and backspace key
+// implementation of backspace button
 const backSpaceKey = (span) => {
     return span.innerText = span.textContent.substring(0, span.textContent.length - 1);
 }
@@ -155,21 +157,6 @@ const backspace = document.querySelector("#bkspc");
 backspace.addEventListener("click", () => {
     deleteGradually()
 })
-
-// implementation of the keys of the numbers
-const numAdd = (num) => {
-    if (spanInMonOp.innerText === "") {
-        if (monitorBox.contains(spanInMonY)) {
-            spanInMonX.textContent = `${num}`
-            spanInMonY.remove()
-        } else {
-            spanInMonX.textContent += `${num}`
-        }
-    } else {
-        monitorBox.appendChild(spanInMonY)
-        spanInMonY.textContent += `${num}`
-    }
-}
 
 //implementation of square root
 const spanRequire = (func) => {
@@ -210,10 +197,18 @@ negateBtn.addEventListener("click", () => {
 
 // implementation of keypress
 document.addEventListener("keydown", (e) => {
-    for (let i = 0; i < 10; i++) {
-        if (e.code === `Digit${i}` || e.code === `Numpad${i}`) {
-            numAdd(i)
+    if (isLengthOfMonitorValid()) {
+        for (let i = 0; i < 10; i++) {
+            if (e.code === `Digit${i}` || e.code === `Numpad${i}`) {
+                numAdd(i)
+            }
         }
+    }
+    let codes = {
+        "NumpadAdd": "+",
+        "NumpadSubtract": "-",
+        "NumpadMultiply": "×",
+        "NumpadDivide": "÷"
     }
     for (let code in codes) {
         if (e.code === code) {
