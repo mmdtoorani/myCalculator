@@ -1,31 +1,3 @@
-const numbers = document.querySelectorAll(".num");
-const monitorBox = document.querySelector(".monitor-box");
-const spanInMonX = document.createElement('span');
-const spanInMonOp = document.createElement('span');
-const spanInMonY = document.createElement('span');
-
-spanInMonX.id = 'span-in-monitor-x'
-spanInMonOp.id = 'span-in-monitor-op'
-spanInMonY.id = 'span-in-monitor-y'
-
-const isLengthOfMonitorValid = () => {
-    return spanInMonX.textContent.length + spanInMonOp.textContent.length + spanInMonY.textContent.length < 16;
-}
-
-const numAdd = (num) => {
-    if (spanInMonOp.innerText === "") {
-        if (monitorBox.contains(spanInMonY)) {
-            spanInMonX.textContent = `${num}`
-            spanInMonY.remove()
-        } else {
-            spanInMonX.textContent += `${num}`
-        }
-    } else {
-        monitorBox.appendChild(spanInMonY)
-        spanInMonY.textContent += `${num}`
-    }
-}
-
 // implementation of number buttons
 Array.from(numbers).forEach(num => {
     if (isLengthOfMonitorValid()) {
@@ -38,44 +10,12 @@ Array.from(numbers).forEach(num => {
 
 // implementation of point button
 const point = document.querySelector("#point");
-const pointLogic = () => {
-    if (spanInMonOp.innerText === "") {
-        if (spanInMonX.innerText === "") {
-            spanInMonX.textContent = "0"
-            spanInMonX.textContent += point.textContent
-        } else {
-            spanInMonX.textContent += point.textContent
-        }
-
-    } else {
-        monitorBox.appendChild(spanInMonY)
-        if (spanInMonY.innerText === "") {
-            spanInMonY.textContent = "0"
-            spanInMonY.textContent += point.textContent
-        } else {
-            spanInMonY.textContent += point.textContent
-        }
-    }
-}
 point.addEventListener("click", () => {
     pointLogic()
 })
 
 // implementation of operations
 const operations = document.querySelectorAll(".opr")
-const oprLogic = (opr) => {
-    if (spanInMonOp.textContent === "") {
-        if (spanInMonX.textContent !== "") {
-            spanInMonOp.textContent += `${opr}`;
-        } else {
-            spanInMonX.textContent = "0"
-            spanInMonOp.textContent += `${opr}`;
-        }
-    } else if (spanInMonY.textContent === "") {
-        spanInMonOp.textContent = `${opr}`;
-    }
-}
-
 Array.from(operations).forEach(operation => {
     monitorBox.appendChild(spanInMonOp)
     operation.addEventListener("click", () => {
@@ -85,90 +25,23 @@ Array.from(operations).forEach(operation => {
 
 // implementation of equal button
 const equal = document.querySelector("#eql")
-const equalFunc = () => {
-    let res;
-    switch (spanInMonOp.textContent) {
-        case "+":
-            res = addition(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "-":
-            res = subtraction(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "×":
-            res = multiplication(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-        case "÷":
-            if (toNum(spanInMonY.textContent) !== 0) {
-                res = division(spanInMonX.textContent, spanInMonY.textContent);
-            } else {
-                spanInMonX.textContent = ""
-                spanInMonOp.textContent = ""
-                spanInMonY.textContent = ""
-            }
-            break;
-        case "^":
-            res = power(spanInMonX.textContent, spanInMonY.textContent);
-            break;
-    }
-    if (spanInMonOp.textContent !== "") {
-        spanInMonY.innerText = "";
-        spanInMonOp.innerText = "";
-        spanInMonX.innerText = res;
-    }
-    if (spanInMonX.innerText.length > 16) {
-        spanInMonX.textContent = toScientific(spanInMonX.textContent)
-    }
-}
 equal.addEventListener("click", equalFunc)
 
 // implementation of clear button
 const clear = document.querySelector("#clear");
 const clearE = document.querySelector("#clre");
-const clearMonitor = () => {
-    spanInMonY.remove()
-    spanInMonOp.innerText = "";
-    spanInMonX.innerText = "";
-}
 const CE = (btn) => btn.addEventListener("click", clearMonitor)
 
 CE(clear);
 CE(clearE);
 
 // implementation of backspace button
-const backSpaceKey = (span) => {
-    return span.innerText = span.textContent.substring(0, span.textContent.length - 1);
-}
-
-const deleteGradually = () => {
-    if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
-        backSpaceKey(spanInMonY);
-
-    } else {
-        if (spanInMonOp.textContent !== "") {
-            backSpaceKey(spanInMonOp);
-        } else {
-            backSpaceKey(spanInMonX);
-        }
-    }
-}
-
 const backspace = document.querySelector("#bkspc");
-
 backspace.addEventListener("click", () => {
     deleteGradually()
 })
 
 //implementation of square root
-const spanRequire = (func) => {
-    if (monitorBox.contains(spanInMonX) && spanInMonX.textContent !== "") {
-        if (monitorBox.contains(spanInMonY) && spanInMonY.textContent !== "") {
-            spanInMonY.innerText = func(spanInMonY.textContent)
-        } else {
-            spanInMonX.innerText = func(spanInMonX.textContent)
-        }
-    }
-}
-
 const radicalBtn = document.querySelector("#radical");
 radicalBtn.addEventListener("click", () => {
     spanRequire(squareRoot)
